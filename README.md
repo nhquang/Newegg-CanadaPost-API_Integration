@@ -1,3 +1,3 @@
 # Newegg, CanadaPost API Integration
-![Newegg](API2.PNG)
-![CanadaPost](API.PNG)
+![Newegg](API.PNG)
+![CanadaPost](API2.PNG)
