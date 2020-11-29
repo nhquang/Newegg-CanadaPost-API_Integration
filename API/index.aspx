@@ -35,7 +35,7 @@
             <asp:Table ID="table" 
                 runat="server" 
                 Font-Size="X-Large" 
-                Width="800" 
+                Width="1000" 
                 Font-Names="Arial"
             
                 BorderColor="Black"

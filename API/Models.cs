@@ -31,10 +31,7 @@ namespace API
         }
     }
 
-    public class ResponseModel
-    {
-        public NeweggAPIResponse NeweggAPIResponse { get; set; }
-    }
+    
     public class NeweggAPIResponse
     {
         public ResponseBody ResponseBody { get; set; }
@@ -42,12 +39,9 @@ namespace API
     }
     public class ResponseBody
     {
-        public OrderInfoList OrderInfoList { get; set; }
+        public OrderInfo[] OrderInfoList { get; set; }
     }
-    public class OrderInfoList
-    {
-        public OrderInfo[] orderInfos { get; set; }
-    }
+    
     public class OrderInfo
     {
         public string OrderNumber { get; set; }

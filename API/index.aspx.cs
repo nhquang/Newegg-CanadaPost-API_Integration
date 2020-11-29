@@ -56,12 +56,32 @@ namespace API
 
                 var request = await HttpRequest.createRequest(ConfigurationManager.AppSettings["NeweggURL"].Trim(), "PUT", parameters, headers, null, null, JsonConvert.SerializeObject(body));
 
-                var data = JsonConvert.DeserializeObject<ResponseModel>(await HttpRequest.getData(request));
+                var data = JsonConvert.DeserializeObject<NeweggAPIResponse>(await HttpRequest.getData(request));
                 
-                if(data.NeweggAPIResponse.ResponseBody.OrderInfoList.orderInfos.Length > 0)
+                if(data.ResponseBody.OrderInfoList != null && data.ResponseBody.OrderInfoList.Length > 0)
                 {
+                    foreach (var item in data.ResponseBody.OrderInfoList)
+                    {
+                        
+                        TableRow row = new TableRow();
+                        TableCell cell1 = new TableCell();
+                        TableCell cell2 = new TableCell();
+                        TableCell cell3 = new TableCell();
+                        TableCell cell4 = new TableCell();
+                        TableCell cell5 = new TableCell();
+                        cell1.Text = $"{item.OrderNumber}";
+                        cell2.Text = $"{item.ShipToFirstName}";
+                        cell3.Text = $"{item.ShipToAddress1}";
+                        cell4.Text = $"{item.ShipToZipCode}";
+                        cell5.Text = $"{item.ShipToCountryCode}";
+                        row.Cells.Add(cell1);
+                        row.Cells.Add(cell2);
+                        row.Cells.Add(cell3);
+                        row.Cells.Add(cell4);
+                        row.Cells.Add(cell5);
+                        table.Rows.Add(row);
+                    }
                     table.Visible = true;
-                    
                 }
 
 
