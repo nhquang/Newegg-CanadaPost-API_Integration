@@ -19,10 +19,10 @@ namespace API
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            orderNo.Text = "159243598";
             table.Visible = false;
             table2.Visible = false;
             error.Visible = false;
+            error2.Visible = false;
         }
 
         
@@ -31,7 +31,8 @@ namespace API
         {
             try
             {
-                error.Visible = false;
+                //error.Visible = false;
+                //error2.Visible = false;
 
                 var parameters = new Dictionary<string, string>();
                 parameters.Add("sellerid", ConfigurationManager.AppSettings["sellerID"].Trim());
@@ -91,7 +92,8 @@ namespace API
         {
             try
             {
-                error.Visible = false;
+                //error.Visible = false;
+                //error2.Visible = false;
 
                 var username = ConfigurationSettings.AppSettings["username"].Trim();
                 var password = ConfigurationSettings.AppSettings["password"].Trim();
@@ -100,7 +102,6 @@ namespace API
                 var url = ConfigurationManager.AppSettings["CanadaPostURL"].Trim();
 
                 var method = "POST"; // HTTP Method
-                String responseAsString = ".NET Framework " + Environment.Version.ToString() + "\r\n\r\n";
 
                 // Create mailingScenario object to contain xml request
                 mailingscenario mailingScenario = new mailingscenario();
@@ -111,10 +112,13 @@ namespace API
 
                 // Populate mailingScenario object
                 mailingScenario.customernumber = mailedBy;
-                mailingScenario.parcelcharacteristics.weight = 1;
-                mailingScenario.originpostalcode = "M3J3S7";
+                mailingScenario.parcelcharacteristics.weight = Convert.ToDecimal(weight.Text);
+                mailingScenario.originpostalcode = origin.Text.ToUpper().Trim().Replace(" ", "");
+
                 //mailingScenario.contractid = ConfigurationManager.AppSettings["contractID"].Trim();
-                destDom.postalcode = "J0E1X0";
+
+
+                destDom.postalcode = des.Text.ToUpper().Trim().Replace(" ","");
 
                 StringBuilder mailingScenarioSb = new StringBuilder();
                 XmlWriter mailingScenarioXml = XmlWriter.Create(mailingScenarioSb);
@@ -148,9 +152,6 @@ namespace API
                 // Retrieve values from pricequotes object
                 foreach (var priceQuote in priceQuotes.pricequote)
                 {
-                    //responseAsString += "Service Name: " + priceQuote.servicename + "\r\n";
-                    //responseAsString += "Price Name: $" + priceQuote.pricedetails.due + "\r\n\r\n";
-
                     TableRow row = new TableRow();
                     TableCell cell1 = new TableCell();
                     TableCell cell2 = new TableCell();
@@ -172,12 +173,12 @@ namespace API
                 {
                     using (var sr = new StreamReader(stream))
                     {
-                        error.Text = await sr.ReadToEndAsync();
+                        error2.Text = await sr.ReadToEndAsync();
                         sr.Close();
                     }
                     stream.Close();
                 }
-                error.Visible = true;
+                error2.Visible = true;
                 wEx.Response.Close();
                 wEx.Response.Dispose();
             }

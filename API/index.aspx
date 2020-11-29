@@ -12,13 +12,23 @@
         <form id="form1" runat="server">
             <div>
                 <h1>Newegg Order Info</h1>
-                <asp:TextBox runat="server" ID="orderNo" ></asp:TextBox>
+                <asp:TextBox runat="server" ID="orderNo" placeholder="Enter order number"></asp:TextBox>
                 <asp:Button runat="server" ID="getorder" Text="Submit" OnClick="submit_Click"/>
                 <asp:Label ID="error" runat="server" Text="" ForeColor="Red"></asp:Label>
             </div>
             <div>
                 <h1>CanadaPost Get Rates</h1>
-                <asp:Button ID="getrates" runat="server" Text="Get Rates" OnClick="getrates_Click" />
+                <asp:Label ID="originLbl" runat="server" Text="Origin postal code"></asp:Label>
+                <asp:TextBox runat="server" ID="origin" placeholder="Enter postal code"></asp:TextBox>
+                <br />
+                <asp:Label ID="destinLbl" runat="server" Text="Destination postal code"></asp:Label>
+                <asp:TextBox runat="server" ID="des" placeholder="Enter postal code"></asp:TextBox>
+                <br />
+                <asp:Label ID="weightLbl" runat="server" Text="Weight(kilograms)"></asp:Label>
+                <asp:TextBox runat="server" ID="weight" placeholder="1" TextMode="Number"></asp:TextBox>
+                <br />
+                <asp:Button ID="getrates" runat="server" Text="Get Rates" OnClick="getrates_Click"/>
+                <asp:Label ID="error2" runat="server" Text="" ForeColor="Red"></asp:Label>
             </div>
         </form>
         <div>
@@ -70,7 +80,7 @@
                     >
                     <asp:TableHeaderCell HorizontalAlign="Left">Service</asp:TableHeaderCell>
                     
-                    <asp:TableHeaderCell HorizontalAlign="Left">Transit Day</asp:TableHeaderCell>
+                    <asp:TableHeaderCell HorizontalAlign="Left">Transit Days</asp:TableHeaderCell>
                     
                     <asp:TableHeaderCell HorizontalAlign="Left">Regular Price</asp:TableHeaderCell>
                 </asp:TableHeaderRow>

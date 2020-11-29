@@ -41,11 +41,6 @@ namespace API
                 //request body
                 if (!string.IsNullOrEmpty(body))
                 {
-                    /*using (var streamWriter = new StreamWriter(request.GetRequestStream()))
-                    {
-                        await streamWriter.WriteAsync(body);
-                        streamWriter.Close();
-                    }*/
                     using (var stream = await request.GetRequestStreamAsync())
                     {
                         UTF8Encoding encoding = new UTF8Encoding();
