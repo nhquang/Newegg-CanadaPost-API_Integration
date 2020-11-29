@@ -1,2 +1,3 @@
 # Newegg, CanadaPost API Integration
-![Image of Yaktocat](API.PNG)
+![Newegg](API2.PNG)
+![CanadaPost](API.PNG)
