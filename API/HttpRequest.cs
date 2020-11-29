@@ -54,7 +54,7 @@ namespace API
                         stream.Close();
                     }
                 }
-                
+                request.Date = DateTime.UtcNow;
                 return request;
             }
             catch (Exception ex)
